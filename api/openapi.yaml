@@ -1,0 +1,181 @@
+openapi: 3.0.1
+info:
+  description: API for performing basic arithmetic operations
+  title: Arithmetic Operations API
+  version: 1.0.0
+servers:
+- url: http://localhost:5000/
+tags:
+- description: Handle arithmetic operations
+  name: Arithmetic Operations
+paths:
+  /sum:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_sum_post_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_sum_post_200_response'
+          description: Sum of numbers
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_sum_post_400_response'
+          description: Invalid input
+      summary: Sum a list of numbers
+      tags:
+      - Arithmetic Operations
+      x-codegen-request-body-name: body
+  /subtract:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_subtract_post_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_subtract_post_200_response'
+          description: Result of subtraction
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_sum_post_400_response'
+          description: Invalid input
+      summary: Subtract a list of numbers
+      tags:
+      - Arithmetic Operations
+      x-codegen-request-body-name: body
+  /multiply:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_multiply_post_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_multiply_post_200_response'
+          description: Product of numbers
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_sum_post_400_response'
+          description: Invalid input
+      summary: Multiply a list of numbers
+      tags:
+      - Arithmetic Operations
+      x-codegen-request-body-name: body
+  /divide:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_divide_post_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_divide_post_200_response'
+          description: Result of division
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_sum_post_400_response'
+          description: Invalid input or division by zero
+      summary: Divide a list of numbers
+      tags:
+      - Arithmetic Operations
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    _sum_post_request:
+      properties:
+        numbers:
+          description: List of numbers to sum
+          items:
+            type: number
+          type: array
+      type: object
+    _subtract_post_request:
+      properties:
+        numbers:
+          description: List of numbers to subtract
+          items:
+            type: number
+          type: array
+      type: object
+    _multiply_post_request:
+      properties:
+        numbers:
+          description: List of numbers to multiply
+          items:
+            type: number
+          type: array
+      type: object
+    _sum_post_200_response:
+      example:
+        sum: 0.8008281904610115
+      properties:
+        sum:
+          type: number
+      type: object
+    _sum_post_400_response:
+      example:
+        error: error
+      properties:
+        error:
+          type: string
+      type: object
+    _subtract_post_200_response:
+      example:
+        difference: 0.8008281904610115
+      properties:
+        difference:
+          type: number
+      type: object
+    _multiply_post_200_response:
+      example:
+        product: 0.8008281904610115
+      properties:
+        product:
+          type: number
+      type: object
+    _divide_post_request:
+      properties:
+        numbers:
+          description: List of numbers to divide
+          items:
+            type: number
+          type: array
+      type: object
+    _divide_post_200_response:
+      example:
+        quotient: 0.8008281904610115
+      properties:
+        quotient:
+          type: number
+      type: object
+x-original-swagger-version: "2.0"
